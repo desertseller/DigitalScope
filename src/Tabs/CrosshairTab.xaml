@@ -173,6 +173,13 @@
                 </Grid>
             </Border>
 
+            <Button x:Name="BtnReset"
+                    Content="Reset to Defaults"
+                    Style="{StaticResource ModernButton}"
+                    HorizontalAlignment="Right"
+                    Margin="0,12,0,0"
+                    Click="BtnReset_Click"/>
+
         </StackPanel>
     </ScrollViewer>
 

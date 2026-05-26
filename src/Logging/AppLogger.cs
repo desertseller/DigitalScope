@@ -18,9 +18,11 @@ public static class AppLogger
 
         try
         {
-            var logPath = Path.Combine(
-                AppDomain.CurrentDomain.BaseDirectory,
-                "log.txt");
+            var appData = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                "DigitalScope");
+            Directory.CreateDirectory(appData);
+            var logPath = Path.Combine(appData, "log.txt");
 
             _writer = new StreamWriter(logPath, append: false, encoding: System.Text.Encoding.UTF8)
             {
