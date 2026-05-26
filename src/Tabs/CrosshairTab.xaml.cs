@@ -211,6 +211,19 @@ public partial class CrosshairTab : UserControl
         if (cb.Items.Count > 0) cb.SelectedIndex = 0;
     }
 
+    private void BtnReset_Click(object sender, RoutedEventArgs e)
+    {
+        if (_config is null) return;
+        _config.OverlayCrosshairType      = AppSettings.DefaultOverlayCrosshairType;
+        _config.OverlayCrosshairColor     = AppSettings.DefaultOverlayCrosshairColor;
+        _config.OverlayCrosshairSize      = AppSettings.DefaultOverlayCrosshairSize;
+        _config.OverlayCrosshairOpacity   = AppSettings.DefaultOverlayCrosshairOpacity;
+        _config.OverlayCrosshairGap       = AppSettings.DefaultOverlayCrosshairGap;
+        _config.OverlayCrosshairThickness = AppSettings.DefaultOverlayCrosshairThickness;
+        Save();
+        LoadValues();
+    }
+
     private static string? SelectedTag(ComboBox cb)
         => (cb.SelectedItem as ComboBoxItem)?.Tag as string;
 }
