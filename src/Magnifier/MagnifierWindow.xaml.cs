@@ -101,8 +101,12 @@ public partial class MagnifierWindow : Window
         int outW = _bitmap.PixelWidth;
         int outH = _bitmap.PixelHeight;
 
-        int centerX = GetSystemMetrics(SM_CXSCREEN) / 2;
-        int centerY = GetSystemMetrics(SM_CYSCREEN) / 2;
+        var ps = PresentationSource.FromVisual(this);
+        double dpiX = ps?.CompositionTarget?.TransformToDevice.M11 ?? 1.0;
+        double dpiY = ps?.CompositionTarget?.TransformToDevice.M22 ?? 1.0;
+
+        int centerX = (int)Math.Round((Left + ActualWidth  / 2) * dpiX);
+        int centerY = (int)Math.Round((Top  + ActualHeight / 2) * dpiY);
 
         var (srcX, srcY, srcW, srcH) =
             MagnifierEngine.ComputeSourceRect(centerX, centerY, outW, outH, _config.ZoomFactor);
