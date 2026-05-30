@@ -4,8 +4,8 @@ public static class AppSettings
 {
     public const string AppName         = "DigitalScope";
     public const string AppPublisher    = "desertseller";
-    public const string AppBaseVersion  = "1.3.1";
-    public const string AppBuild        = "2805202601";
+    public const string AppBaseVersion  = "1.3.2";
+    public const string AppBuild        = "3005202601";
     public const string AppVersion      = AppBaseVersion + "." + AppBuild;
 
     public const int DefaultMagnifierWidth  = 300;
