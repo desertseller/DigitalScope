@@ -51,6 +51,7 @@ public sealed class HotkeyManager : IDisposable
     public void Attach(Window window)
     {
         _hwnd   = new WindowInteropHelper(window).EnsureHandle();
+        _source?.RemoveHook(WndProc);
         _source = HwndSource.FromHwnd(_hwnd);
         _source.AddHook(WndProc);
         AppLogger.Info("HotkeyManager attached to window handle.");
@@ -91,7 +92,7 @@ public sealed class HotkeyManager : IDisposable
         _callbacks.Remove(id);
         if (_mouseHotkeys.Remove(id))
         {
-            if (_mouseHotkeys.Count == 0 && _callbacks.All(kvp => !_mouseHotkeys.ContainsKey(kvp.Key)))
+            if (_mouseHotkeys.Count == 0)
                 UninstallMouseHook();
         }
         else
@@ -270,8 +271,9 @@ public sealed class HotkeyManager : IDisposable
                 _ => 0
             };
         }
-        catch
+        catch (Exception ex)
         {
+            AppLogger.Warn($"ExtractXButton failed: {ex.Message}");
             return 0;
         }
     }

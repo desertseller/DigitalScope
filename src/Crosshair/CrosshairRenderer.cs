@@ -96,7 +96,7 @@ public static class CrosshairRenderer
             var c = (Color)ColorConverter.ConvertFromString(hex);
             return new SolidColorBrush(c);
         }
-        catch { return null; }
+        catch (Exception ex) { AppLogger.Warn($"ParseBrush failed for '{hex}': {ex.Message}"); return null; }
     }
 
     public static double CanvasSize(AppConfig config)

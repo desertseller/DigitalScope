@@ -19,11 +19,14 @@ public static class MagnifierEngine
     [DllImport("gdi32.dll")] private static extern bool   SetStretchBltMode(IntPtr hdc, int iStretchMode);
     [DllImport("user32.dll")] private static extern IntPtr GetDC(IntPtr hWnd);
     [DllImport("user32.dll")] private static extern int    ReleaseDC(IntPtr hWnd, IntPtr hDC);
-    [DllImport("user32.dll")] private static extern bool   GetCursorPos(out POINT lpPoint);
+    [DllImport("user32.dll")] private static extern int    GetSystemMetrics(int nIndex);
 
     private const uint SRCCOPY       = 0x00CC0020;
     private const int  HALFTONE      = 4;
     private const uint DIB_RGB_COLORS = 0;
+
+    private const int SM_CXSCREEN = 0;
+    private const int SM_CYSCREEN = 1;
 
     [StructLayout(LayoutKind.Sequential)]
     private struct BITMAPINFOHEADER
@@ -49,12 +52,7 @@ public static class MagnifierEngine
         public uint[] bmiColors;
     }
 
-    [StructLayout(LayoutKind.Sequential)]
-    public struct POINT
-    {
-        public int X;
-        public int Y;
-    }
+
 
     public static unsafe void UpdateFrame(WriteableBitmap wb,
                                           int sourceX, int sourceY,
@@ -122,21 +120,18 @@ public static class MagnifierEngine
         }
     }
 
-    public static POINT GetCursorPosition()
-    {
-        GetCursorPos(out var p);
-        return p;
-    }
-
     public static (int X, int Y, int W, int H) ComputeSourceRect(
         int centerX, int centerY,
         int outW,  int outH,
         double zoom)
     {
+        int screenW = GetSystemMetrics(SM_CXSCREEN);
+        int screenH = GetSystemMetrics(SM_CYSCREEN);
+
         int srcW = (int)Math.Ceiling(outW / zoom);
         int srcH = (int)Math.Ceiling(outH / zoom);
-        int srcX = centerX - srcW / 2;
-        int srcY = centerY - srcH / 2;
+        int srcX = Math.Clamp(centerX - srcW / 2, 0, screenW - srcW);
+        int srcY = Math.Clamp(centerY - srcH / 2, 0, screenH - srcH);
         return (srcX, srcY, srcW, srcH);
     }
 }

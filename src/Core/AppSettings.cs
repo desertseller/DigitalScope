@@ -4,8 +4,8 @@ public static class AppSettings
 {
     public const string AppName         = "DigitalScope";
     public const string AppPublisher    = "desertseller";
-    public const string AppBaseVersion  = "1.3.1";
-    public const string AppBuild        = "2805202601";
+    public const string AppBaseVersion  = "1.3.2";
+    public const string AppBuild        = "3005202601";
     public const string AppVersion      = AppBaseVersion + "." + AppBuild;
 
     public const int DefaultMagnifierWidth  = 300;
@@ -16,6 +16,7 @@ public static class AppSettings
     public const double MaxZoomFactor     = 8.0;
 
     public const bool   DefaultShowCrosshair   = false;
+    public const bool   DefaultOverlayEnabled  = false;
     public const string DefaultCrosshairColor  = "#ffffff";
 
     // crosshair overlay
