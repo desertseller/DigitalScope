@@ -38,7 +38,7 @@ public partial class CrosshairTab : UserControl
     {
         _loading = true;
 
-        ChkEnabled.IsChecked = false;
+        ChkEnabled.IsChecked = _config.OverlayEnabled;
 
         //type
         SelectComboItem(CbType, _config.OverlayCrosshairType);
@@ -67,8 +67,9 @@ public partial class CrosshairTab : UserControl
 
     private void ChkEnabled_Changed(object s, RoutedEventArgs e)
     {
-        if (_loading) return;
-        ConfigChanged?.Invoke();
+        if (_loading || _config is null) return;
+        _config.OverlayEnabled = ChkEnabled.IsChecked == true;
+        Save();
     }
 
     public bool IsOverlayEnabled => ChkEnabled.IsChecked == true;
@@ -214,6 +215,7 @@ public partial class CrosshairTab : UserControl
     private void BtnReset_Click(object sender, RoutedEventArgs e)
     {
         if (_config is null) return;
+        _config.OverlayEnabled            = AppSettings.DefaultOverlayEnabled;
         _config.OverlayCrosshairType      = AppSettings.DefaultOverlayCrosshairType;
         _config.OverlayCrosshairColor     = AppSettings.DefaultOverlayCrosshairColor;
         _config.OverlayCrosshairSize      = AppSettings.DefaultOverlayCrosshairSize;

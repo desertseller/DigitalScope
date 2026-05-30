@@ -16,6 +16,7 @@ public static class AppSettings
     public const double MaxZoomFactor     = 8.0;
 
     public const bool   DefaultShowCrosshair   = false;
+    public const bool   DefaultOverlayEnabled  = false;
     public const string DefaultCrosshairColor  = "#ffffff";
 
     // crosshair overlay

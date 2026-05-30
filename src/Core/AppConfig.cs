@@ -11,6 +11,7 @@ public class AppConfig
     public string CrosshairColor { get; set; } = AppSettings.DefaultCrosshairColor;
 
     // crosshair overlay
+    public bool   OverlayEnabled            { get; set; } = AppSettings.DefaultOverlayEnabled;
     public string OverlayCrosshairType      { get; set; } = AppSettings.DefaultOverlayCrosshairType;
     public string OverlayCrosshairColor     { get; set; } = AppSettings.DefaultOverlayCrosshairColor;
     public int    OverlayCrosshairSize      { get; set; } = AppSettings.DefaultOverlayCrosshairSize;
