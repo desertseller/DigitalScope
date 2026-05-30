@@ -299,7 +299,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CheckBox">
-                    <Border Background="Transparent" Padding="0,2">
+                    <Border Background="{x:Null}" Padding="0,2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
