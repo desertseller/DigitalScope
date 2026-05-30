@@ -131,6 +131,6 @@ public partial class GeneralTab : UserControl
             var c = (Color)ColorConverter.ConvertFromString(hex);
             swatch.Background = new SolidColorBrush(c);
         }
-        catch { }
+        catch (Exception ex) { AppLogger.Warn($"SetSwatch failed for '{hex}': {ex.Message}"); }
     }
 }

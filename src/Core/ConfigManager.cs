@@ -22,7 +22,7 @@ public class ConfigManager
             AppSettings.AppName);
 
         try   { Directory.CreateDirectory(dir); }
-        catch { dir = AppDomain.CurrentDomain.BaseDirectory; }
+        catch { AppLogger.Warn($"Could not create config directory '{dir}', using base dir."); dir = AppDomain.CurrentDomain.BaseDirectory; }
 
         _configPath = Path.Combine(dir, "settings.json");
         AppLogger.Info($"Config path: {_configPath}");

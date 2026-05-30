@@ -62,7 +62,7 @@ public sealed class TrayIconManager : IDisposable
                     return (Icon)extracted.Clone();
             }
         }
-        catch { }
+        catch (Exception ex) { AppLogger.Warn($"LoadAppIcon failed: {ex.Message}"); }
 
         return (Icon)SystemIcons.Application.Clone();
     }

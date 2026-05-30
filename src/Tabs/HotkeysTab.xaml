@@ -34,8 +34,7 @@
                                  VerticalAlignment="Center"
                                  Margin="0,1,0,0"
                                  KeyDown="TbToggleHotkey_KeyDown"
-                                 GotFocus="TbHotkey_GotFocus"
-                                 LostFocus="TbHotkey_LostFocus"/>
+                                 GotFocus="TbHotkey_GotFocus"/>
                     </Grid>
 
                     <Separator Background="{StaticResource BorderBrush}" Margin="0,4"/>
@@ -54,8 +53,7 @@
                                  VerticalAlignment="Center"
                                  Margin="0,1,0,0"
                                  KeyDown="TbCrosshairHotkey_KeyDown"
-                                 GotFocus="TbHotkey_GotFocus"
-                                 LostFocus="TbHotkey_LostFocus"/>
+                                 GotFocus="TbHotkey_GotFocus"/>
                     </Grid>
 
                 </StackPanel>

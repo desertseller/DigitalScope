@@ -87,8 +87,6 @@ public partial class HotkeysTab : UserControl
         LblStatus.Text = "Press a key combination or mouse button (e.g. Ctrl+M or LButton). Press ESC to cancel.";
     }
 
-    public void TbHotkey_LostFocus(object s, RoutedEventArgs e) { }
-
     private void TbToggleHotkey_KeyDown(object s, KeyEventArgs e)
     {
         if (IsEscape(e)) { CancelEdit(TbToggleHotkey, _prevToggle, e); return; }

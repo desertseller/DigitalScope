@@ -67,6 +67,11 @@ public partial class MagnifierWindow : Window
     public void Deactivate()
     {
         _active = false;
+        if (_renderHooked)
+        {
+            CompositionTarget.Rendering -= OnRendering;
+            _renderHooked = false;
+        }
         Hide();
         RestoreCursor();
         AppLogger.Info("Magnifier deactivated.");
