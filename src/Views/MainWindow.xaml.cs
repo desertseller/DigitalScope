@@ -84,7 +84,13 @@ public partial class MainWindow : Window
         Close();
     }
 
-    public void ToggleCrosshair() => _crosshair.Toggle();
+    public void ToggleCrosshair()
+    {
+        _crosshair.Toggle();
+        _cfgManager.Config.OverlayEnabled = _crosshair.IsActive;
+        _cfgManager.Save();
+        TabCrosshair.Refresh();
+    }
 
     private void EnableDarkTitleBar()
     {
@@ -118,7 +124,7 @@ public partial class MainWindow : Window
             () =>
             {
                 if (!TabHotkeys.IsAnyHotkeyFocused)
-                    Dispatcher.Invoke(() => _crosshair.Toggle());
+                    Dispatcher.Invoke(() => ToggleCrosshair());
             });
 
         AppLogger.Info($"Hotkeys: toggle={_cfgManager.Config.HotkeyToggle}, crosshair={_cfgManager.Config.HotkeyCrosshair}");
