@@ -16,7 +16,7 @@ A lightweight real time screen magnifier and crosshair overlay for Windows that 
 - Click through window, so it does not block mouse input
 - Hotkey toggle for quick on/off
 
-## Installation
+## How to install
 
 ### Requirements
 - .NET 8 SDK or later

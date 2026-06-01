@@ -180,6 +180,7 @@ public partial class CrosshairTab : UserControl
         PreviewCanvas.Width  = previewSide;
         PreviewCanvas.Height = previewSide;
         CrosshairRenderer.Draw(PreviewCanvas, previewConfig);
+        PreviewCanvas.Opacity = _config.OverlayCrosshairOpacity;
     }
 
     private void Save()
