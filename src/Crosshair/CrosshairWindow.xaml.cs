@@ -63,7 +63,7 @@ public partial class CrosshairWindow : Window
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         MakeClickThrough();
-        Hide();
+        if (!_active) Hide();
     }
 
     private void ApplyConfig()

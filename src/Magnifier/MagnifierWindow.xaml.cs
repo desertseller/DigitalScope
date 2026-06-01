@@ -86,7 +86,7 @@ public partial class MagnifierWindow : Window
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         MakeClickThrough();
-        Hide();
+        if (!_active) Hide();
     }
 
     private void OnClosed(object? sender, EventArgs e)
