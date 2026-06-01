@@ -110,8 +110,11 @@ public partial class MagnifierWindow : Window
         double dpiX = ps?.CompositionTarget?.TransformToDevice.M11 ?? 1.0;
         double dpiY = ps?.CompositionTarget?.TransformToDevice.M22 ?? 1.0;
 
-        int centerX = (int)Math.Round((Left + ActualWidth  / 2) * dpiX);
-        int centerY = (int)Math.Round((Top  + ActualHeight / 2) * dpiY);
+        double w = ActualWidth  > 0 ? ActualWidth  : Width;
+        double h = ActualHeight > 0 ? ActualHeight : Height;
+
+        double centerX = (Left + w / 2) * dpiX;
+        double centerY = (Top  + h / 2) * dpiY;
 
         var (srcX, srcY, srcW, srcH) =
             MagnifierEngine.ComputeSourceRect(centerX, centerY, outW, outH, _config.ZoomFactor);
@@ -171,12 +174,11 @@ public partial class MagnifierWindow : Window
     private void PositionWindow()
     {
         UpdateLayout();
-        var screen = SystemParameters.WorkArea;
-        double w   = ActualWidth  > 0 ? ActualWidth  : Width;
-        double h   = ActualHeight > 0 ? ActualHeight : Height;
+        double w = ActualWidth  > 0 ? ActualWidth  : Width;
+        double h = ActualHeight > 0 ? ActualHeight : Height;
 
-        Left = screen.Left + (screen.Width  - w) / 2;
-        Top  = screen.Top  + (screen.Height - h) / 2;
+        Left = (SystemParameters.PrimaryScreenWidth  - w) / 2;
+        Top  = (SystemParameters.PrimaryScreenHeight - h) / 2;
     }
 
     private void HideCursor()

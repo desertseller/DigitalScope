@@ -121,7 +121,7 @@ public static class MagnifierEngine
     }
 
     public static (int X, int Y, int W, int H) ComputeSourceRect(
-        int centerX, int centerY,
+        double centerX, double centerY,
         int outW,  int outH,
         double zoom)
     {
@@ -130,8 +130,8 @@ public static class MagnifierEngine
 
         int srcW = (int)Math.Ceiling(outW / zoom);
         int srcH = (int)Math.Ceiling(outH / zoom);
-        int srcX = Math.Clamp(centerX - srcW / 2, 0, screenW - srcW);
-        int srcY = Math.Clamp(centerY - srcH / 2, 0, screenH - srcH);
+        int srcX = (int)Math.Round(Math.Clamp(centerX - srcW / 2.0, 0, screenW - srcW));
+        int srcY = (int)Math.Round(Math.Clamp(centerY - srcH / 2.0, 0, screenH - srcH));
         return (srcX, srcY, srcW, srcH);
     }
 }
