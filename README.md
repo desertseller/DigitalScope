@@ -2,6 +2,8 @@
    <h1>DigitalScope</h1>
 </div>
 
+### archived / no longer maintained
+
 A lightweight real time screen magnifier and crosshair overlay for Windows that lets you zoom in on the center of your screen and display customizable crosshairs
 
 <p align="center">
